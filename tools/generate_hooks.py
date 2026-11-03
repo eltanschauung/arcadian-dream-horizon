@@ -133,3 +133,5 @@ add('fairy-flight','horizon_client_lib::mobs::Mob::tick','''fn hook(value:bool,m
  value
 }''',[('value','bool','$value'),('m','&mut Mob','&mut *self'),('w','&MobWorld','w'),('events','&mut Vec<MobEvent>','&mut *events')],kind='RETURN')
 (R/'tools/hooks.json').write_text(json.dumps(hooks,indent=2)+'\n')
+add('danmaku-damage-catalog','horizon_world::damage_source::Catalog::from_json',(B/'damage-catalog.rs').read_text(),[('v','&serde_json::Value','v'),('resources','&serde_json::Value','resources')],cancel=True)
+(R/'tools/hooks.json').write_text(json.dumps(hooks,indent=2)+'\n')

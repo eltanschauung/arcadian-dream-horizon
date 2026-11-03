@@ -20,6 +20,11 @@ impl Game<'_> {
         let Hit::Entity { who, .. } = hit else {
             return true;
         };
+        // Connected players use Who::Mob(entity_id) in the collision scene.
+        // Route as the victim before our custom mob damage consumes the hit.
+        if let Hit::Entity { who: Who::Mob(id), at } = hit {
+            if self.lan_projectile_hit(p, id, at) { return true; }
+        }
         if matches!(who,Who::Mob(id)if id>=super::dragon::SPECIAL) {
             return false;
         }

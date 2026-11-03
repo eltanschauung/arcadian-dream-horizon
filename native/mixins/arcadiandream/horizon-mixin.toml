@@ -554,3 +554,11 @@ kind="RETURN"
 target="horizon_client_lib::mobs::Mob::tick"
 helper="fairy-flight.rs"
 bindings=[{name="value",ty="bool",value="$value"},{name="m",ty="&mut Mob",value="&mut *self"},{name="w",ty="&MobWorld",value="w"},{name="events",ty="&mut Vec<MobEvent>",value="&mut *events"}]
+
+[[injection]]
+id="danmaku-damage-catalog"
+kind="HEAD"
+target="horizon_world::damage_source::Catalog::from_json"
+helper="danmaku-damage-catalog.rs"
+cancellable=true
+bindings=[{name="v",ty="&serde_json::Value",value="v"},{name="resources",ty="&serde_json::Value",value="resources"}]

@@ -1125,5 +1125,24 @@
     ],
     "kind": "RETURN",
     "cancel": false
+  },
+  {
+    "ident": "danmaku-damage-catalog",
+    "target": "horizon_world::damage_source::Catalog::from_json",
+    "helper": "danmaku-damage-catalog.rs",
+    "params": [
+      [
+        "v",
+        "&serde_json::Value",
+        "v"
+      ],
+      [
+        "resources",
+        "&serde_json::Value",
+        "resources"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": true
   }
 ]
