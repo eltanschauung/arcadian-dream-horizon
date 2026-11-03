@@ -10,7 +10,7 @@ def main():
  subprocess.run(['python3',ROOT/'tools/generate_native.py'],check=True)
  subprocess.run([args.packager,'build'],cwd=ROOT,check=True)
  subprocess.run([args.packager,'check',ROOT/'target/horizon-mod/arcadiandream.hmod','--json'],check=True)
- manifest={'schema':1,'hooks':153,'id':'arcadiandream','version':'0.1.0','game':'26.3','horizon':'d813f63a99978186b127ea14efe5d8603ac2ed4f','mixins':'3f99a5c60dfa311cc365524c44ae2fd799bfa1de'}
+ manifest={'schema':1,'hooks':359,'id':'arcadiandream','version':'0.1.0','game':'26.3','horizon':'54f25c911c8a876bae0f90b27f8e28cb12eaaedf','mixins':'e8cd0aa38cffef49cb2e088ef716baa107148c02'}
  output=ROOT/'target/horizon-mod/arcadiandream.hnmod'
  with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9)as archive:
   def add(name,data):

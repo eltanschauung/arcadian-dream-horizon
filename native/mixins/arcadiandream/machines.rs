@@ -72,6 +72,7 @@ pub fn screen(block: &str, out: &mut Option<NativeScreen>) {
             inventory_x: 8.0,
             inventory_y: 84.0,
             own_labels: false,
+            own_background: false,
         });
     }
 }

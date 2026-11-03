@@ -3,7 +3,7 @@ id="arcadiandream"
 version="0.1.0"
 priority=120
 [compatibility]
-horizon_revision="d813f63a99978186b127ea14efe5d8603ac2ed4f"
+horizon_revision="54f25c911c8a876bae0f90b27f8e28cb12eaaedf"
 
 [[module]]
 id="equipment"

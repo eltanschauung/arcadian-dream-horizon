@@ -29,6 +29,7 @@ static FAIRY: AttachmentType<Fairy> = AttachmentType {
     name: "fairy",
     default: Fairy::default,
     copy_on_death: false,
+    sync: false,
     codec: Some(AttachmentCodec {
         encode: |v| {
             Ok(Compound::from([(

@@ -53,7 +53,7 @@ def main():
 }
 ''')
  modules=[('equipment','crates/horizon-client/src/game.rs','arcadian_equipment','equipment.rs'),('settings','crates/horizon-world/src/loot.rs','arcadian_settings','config.rs'),('trades','crates/horizon-client/src/merchant.rs','arcadian_trades','trades.rs'),('trader-game','crates/horizon-client/src/game.rs','arcadian_trader','trader_game.rs'),('loot','crates/horizon-world/src/loot.rs','arcadian_loot','loot.rs'),('combat','crates/horizon-client/src/game.rs','arcadian_combat','combat.rs'),('config-menu','crates/horizon-client/src/game.rs','arcadian_config_menu','config_menu.rs'),('fairies','crates/horizon-client/src/game.rs','arcadian_fairies','fairies.rs'),('game','crates/horizon-client/src/game.rs','arcadian','runtime.rs'),('assets','crates/horizon-client/src/game.rs','arcadian_assets','assets.rs'),('render','crates/horizon-client/src/game.rs','arcadian_render','render.rs'),('machines','crates/horizon-client/src/game.rs','arcadian_machines','machines.rs'),('motion','crates/horizon-client/src/projectiles.rs','arcadian_motion','motion.rs')]
- manifest='[mod]\nid="arcadiandream"\nversion="0.1.0"\npriority=120\n[compatibility]\nhorizon_revision="d813f63a99978186b127ea14efe5d8603ac2ed4f"\n'
+ manifest='[mod]\nid="arcadiandream"\nversion="0.1.0"\npriority=120\n[compatibility]\nhorizon_revision="54f25c911c8a876bae0f90b27f8e28cb12eaaedf"\n'
  for ident,file,name,source in modules:manifest+=f'\n[[module]]\nid="{ident}"\nfile="{file}"\nname="{name}"\nsource="{source}"\nvisibility="pub"\n'
  def hook(ident,target,helper,params,kind='HEAD',cancel=False):
   nonlocal manifest
