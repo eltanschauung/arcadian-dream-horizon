@@ -31,3 +31,9 @@ Player state lives in the world’s `arcadiandream/players.json`. Fairy variants
 Both client and dedicated server need matching content and native packages. This port does not distribute Minecraft resources, Java libraries or a Minecraft JAR. Testing uses isolated worlds; existing worlds are never regenerated.
 
 The installed client was also rebuilt with Arcadian Dream, ChatHeads, Eating Animation, Lunatic, Minimap, Tectonic-Horizon and Zoom, then opened in an isolated world with BOP content enabled. Saved fairies loaded and an item-give command displayed the translated item name. No existing player world or account was used for this check.
+
+## Fairy animation correction
+
+The native renderer now applies GeckoLib's baked coordinate/rotation conventions to bones, cube pivots and cube rotations, and scales about each bone pivot. The original model files remain unchanged. The three original clips (`idle`, `idle.ground`, `move`) use all their authored easing curves, including parameterized elastic easing; per-entity clocks restart on clip changes and blend for five ticks. Movement uses Java's 0.015 horizontal-motion threshold plus nonzero limb speed; hurt fairies select ground/air idle. Head look overrides match the Java models. Death roll and death tint are handled by the native renderer.
+
+Reference: original `BaseFairyEntity.predicate/registerControllers`, fairy model classes, and [GeckoLib 1.20.1 model baking/render transforms](https://github.com/bernie-g/geckolib/tree/af3a0bd93d3367b283c9c97ca288a0bcd84e1ca8/Fabric/src/main/java/software/bernie/geckolib). `python3 tools/test_fairy_animation.py` checks easing values, state selection, clip transitions/restarts/loops, baked axes and death-roll timing using the installed Horizon toolchain/cache. Five checks pass. The combined selected-mod build compiles; the rendered pose and attachments were inspected in an isolated world and confirmed by the user. A Java client was not run side by side.

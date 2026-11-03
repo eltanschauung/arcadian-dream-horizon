@@ -74,9 +74,71 @@ fn frame(v: &Value, time: f32, default: [f32; 3]) -> [f32; 3] {
             }
         }
         "easeInCirc" => t = 1.0 - (1.0 - t * t).max(0.0).sqrt(),
+        "easeInOutCirc" => t = if t < 0.5 {
+            (1.0 - (1.0 - (2.0*t).powi(2)).max(0.0).sqrt()) / 2.0
+        } else { ((1.0 - (-2.0*t+2.0).powi(2)).max(0.0).sqrt() + 1.0) / 2.0 },
+        "easeInOutSine" => t = (1.0 - (std::f32::consts::PI*t).cos()) / 2.0,
+        "easeOutElastic" => {
+            // GeckoLib 4's parameterized elastic curve, not easings.net's fixed-period curve.
+            let n = after.1["easingArgs"][0].as_f64().unwrap_or(1.0) as f32;
+            let u = 1.0-t;
+            t = (u*std::f32::consts::FRAC_PI_2).cos().powi(3)
+                * (u*n*std::f32::consts::PI).cos();
+        }
         _ => {}
     }
     std::array::from_fn(|i| a[i] + (b[i] - a[i]) * t)
+}
+// GeckoLib's controller keeps an independent clip clock and pose snapshot per entity.
+#[derive(Clone, Copy, Debug)]
+struct BonePose { position: [f32;3], rotation: [f32;3], scale: [f32;3] }
+impl BonePose {
+    fn sample(anim: &Value, name: &str, time: f32) -> Self {
+        let b = &anim["bones"][name];
+        Self { position: frame(&b["position"],time,[0.0;3]),
+            rotation: frame(&b["rotation"],time,[0.0;3]),
+            scale: frame(&b["scale"],time,[1.0;3]) }
+    }
+    fn blend(self, to: Self, t: f32) -> Self {
+        let lerp = |a:[f32;3], b:[f32;3]| std::array::from_fn(|i| a[i]+(b[i]-a[i])*t);
+        Self { position:lerp(self.position,to.position), rotation:lerp(self.rotation,to.rotation), scale:lerp(self.scale,to.scale) }
+    }
+}
+#[derive(Default)]
+struct Controller { clip: &'static str, changed: f32, last: f32,
+    from: std::collections::HashMap<String,BonePose>, shown: std::collections::HashMap<String,BonePose> }
+fn select_clip(moving: bool, hurt: bool, ground: bool) -> &'static str {
+    if moving && !hurt { "move" } else if ground { "idle.ground" } else { "idle" }
+}
+impl Controller {
+    fn sample(&mut self, clip: &'static str, age:f32, animations:&Value, bones:&[Value]) -> std::collections::HashMap<String,BonePose> {
+        if age < self.last { *self = Self::default(); }
+        if self.clip != clip {
+            self.from = self.shown.clone(); self.clip=clip; self.changed=age;
+        }
+        self.last=age;
+        let elapsed=(age-self.changed).max(0.0);
+        let anim=&animations[clip];
+        let length=anim["animation_length"].as_f64().unwrap_or(4.0) as f32;
+        // Java transitions toward the first keyframe for 5 ticks, then starts the loop.
+        let time=((elapsed-5.0).max(0.0)/20.0).rem_euclid(length);
+        self.shown=bones.iter().map(|b| {
+            let name=b["name"].as_str().unwrap_or("");
+            let target=BonePose::sample(anim,name,time);
+            let default=BonePose {position:[0.0;3], rotation:[0.0;3], scale:[1.0;3]};
+            let pose=self.from.get(name).copied().unwrap_or(default).blend(target,(elapsed/5.0).min(1.0));
+            (name.to_owned(),pose)
+        }).collect();
+        self.shown.clone()
+    }
+}
+thread_local! { static CONTROLLERS: std::cell::RefCell<std::collections::HashMap<u32,Controller>> = std::cell::RefCell::new(std::collections::HashMap::new()); }
+// Model JSON -> GeckoLib baked coordinates. Apply consistently to cubes and pivots.
+fn geo_position(v:[f32;3]) -> [f32;3] { [-v[0],v[1],v[2]] }
+fn geo_rotation(v:[f32;3]) -> [f32;3] { [-v[0],-v[1],v[2]] }
+fn death_roll(ticks:i32, partial:f32) -> f32 {
+    if ticks<=0 { return 0.0; }
+    (((ticks as f32+partial-1.0)/20.0*1.6).max(0.0).sqrt()).min(1.0)*90.0
 }
 impl Game<'_> {
     pub(super) fn arcadian_draw_fairy(
@@ -102,14 +164,14 @@ impl Game<'_> {
         };
         let animations =
             &data["models"][format!("animations/entity/{animname}.animation.json")]["animations"];
-        let anim = &animations[if m.walk_speed > 0.02 {
-            "move"
-        } else if m.on_ground {
-            "idle.ground"
-        } else {
-            "idle"
-        }];
-        let time = (m.age / 20.0) % anim["animation_length"].as_f64().unwrap_or(4.0) as f32;
+        let moving=self.mobs.iter().find(|mob|mob.id==m.id).is_some_and(|mob|
+            (mob.velocity.x.abs()+mob.velocity.z.abs())/2.0 >= 0.015 && m.walk_speed != 0.0);
+        let clip=select_clip(moving,m.hurt_time>0,m.on_ground);
+        let poses=CONTROLLERS.with(|cache| {
+            let mut cache=cache.borrow_mut();
+            if cache.len()>256 { cache.retain(|id,_| self.mobs.iter().any(|mob|mob.id==*id)); }
+            cache.entry(m.id).or_default().sample(clip,m.age,animations,bones)
+        });
         let skin = if name == "fairy" {
             format!(
                 "fairy_{}",
@@ -129,6 +191,9 @@ impl Game<'_> {
 
         draw.push();
         draw.rotate_about([0.0, 1.0, 0.0], 180.0, [0.0; 3]);
+        if m.death_time > 0 {
+            draw.rotate_about([0.0,0.0,1.0],death_roll(m.death_time,m.partial),[0.0;3]);
+        }
         for (i, b) in bones.iter().enumerate() {
             if b["parent"].is_null() {
                 bone(
@@ -136,8 +201,8 @@ impl Game<'_> {
                     draw,
                     bones,
                     i,
-                    anim,
-                    time,
+                    &poses,
+                    0.0,
                     m,
                     &sprite,
                     &wing_sprite,
@@ -156,8 +221,8 @@ fn bone(
     draw: &mut BlockEntityDraw,
     bones: &[Value],
     index: usize,
-    anim: &Value,
-    time: f32,
+    poses: &std::collections::HashMap<String,BonePose>,
+    _time: f32,
     m: &NativeMobRender<'_>,
     sprite: &str,
     wings: &str,
@@ -166,33 +231,35 @@ fn bone(
 ) {
     let b = &bones[index];
     let name = b["name"].as_str().unwrap_or("");
-    let a = &anim["bones"][name];
+    let pose = poses.get(name).copied().unwrap_or(BonePose {position:[0.0;3],rotation:[0.0;3],scale:[1.0;3]});
     draw.push();
-    let translation = frame(&a["position"], time, [0.0; 3]);
-    draw.translate(translation.map(|v| v / 16.0));
-    let pivot = vector(&b["pivot"], [0.0; 3]).map(|v| v / 16.0);
-    let base = vector(&b["rotation"], [0.0; 3]);
-    let mut rotation = frame(&a["rotation"], time, [0.0; 3]);
+    draw.translate(geo_position(pose.position).map(|v|v/16.0));
+    let pivot=geo_position(vector(&b["pivot"],[0.0;3])).map(|v|v/16.0);
+    let base=geo_rotation(vector(&b["rotation"],[0.0;3]));
+    let delta=geo_rotation(pose.rotation);
+    let mut rotation=std::array::from_fn::<_,3,_>(|i|base[i]+delta[i]);
     if name == "head" || name == "bipedHead" {
-        rotation[0] += m.pitch;
-        rotation[1] += m.head_yaw;
+        // Java's custom head animation replaces X/Y, rather than adding to the clip.
+        rotation[0]=m.pitch; rotation[1]=m.head_yaw;
     }
-    for i in [2, 1, 0] {
-        let mut axis = [0.0; 3];
-        axis[i] = 1.0;
-        draw.rotate_about(axis, base[i] + rotation[i], pivot);
+    draw.translate(pivot);
+    for i in [2,1,0] {
+        let mut axis=[0.0;3]; axis[i]=1.0;
+        draw.rotate_about(axis,rotation[i],[0.0;3]);
     }
-    draw.scale(frame(&a["scale"], time, [1.0; 3]));
+    draw.scale(pose.scale);
+    draw.translate(pivot.map(|v|-v));
     if let Some(cubes) = b["cubes"].as_array() {
         for c in cubes {
             draw.push();
-            let origin = vector(&c["origin"], [0.0; 3]);
+            let mut origin = vector(&c["origin"], [0.0; 3]);
             let size = vector(&c["size"], [0.0; 3]);
+            origin[0] = -origin[0] - size[0];
             let inflate = c["inflate"].as_f64().unwrap_or(0.0) as f32;
             let from = std::array::from_fn(|i| origin[i] - inflate);
             let to = std::array::from_fn(|i| origin[i] + size[i] + inflate);
-            let cp = vector(&c["pivot"], [0.0; 3]).map(|v| v / 16.0);
-            let r = vector(&c["rotation"], [0.0; 3]);
+            let cp = geo_position(vector(&c["pivot"], [0.0; 3])).map(|v| v / 16.0);
+            let r = geo_rotation(vector(&c["rotation"], [0.0; 3]));
             for i in [2, 1, 0] {
                 let mut axis = [0.0; 3];
                 axis[i] = 1.0;
@@ -246,14 +313,14 @@ fn bone(
                 from,
                 to,
                 faces,
-                if m.hurt_time > 0 { 0xff8888 } else { 0xffffff },
+                if m.hurt_time > 0 || m.death_time > 0 { 0xff8888 } else { 0xffffff },
             );
             draw.pop();
         }
     }
     for (j, child) in bones.iter().enumerate() {
         if child["parent"].as_str() == Some(name) {
-            bone(g, draw, bones, j, anim, time, m, sprite, wings, tw, th);
+            bone(g, draw, bones, j, poses, 0.0, m, sprite, wings, tw, th);
         }
     }
     draw.pop();
@@ -293,7 +360,7 @@ impl Game<'_> {
                     draw,
                     bones,
                     i,
-                    &Value::Null,
+                    &std::collections::HashMap::new(),
                     m.age / 20.0,
                     m,
                     "arcadiandream:models/armor/ordinary_armor",
