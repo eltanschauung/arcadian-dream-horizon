@@ -23,4 +23,3 @@ fn hook(v: &serde_json::Value, resources: &serde_json::Value) -> core::ops::Cont
     // The appended ID above makes the recursive parse pass through unmodified.
     core::ops::ControlFlow::Break(Catalog::from_json(&v, &tags))
 }
-
