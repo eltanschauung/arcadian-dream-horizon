@@ -16,7 +16,7 @@ Target: the complete Arcadian Dream 0.1.0 content and gameplay roster on Horizon
 | Accessories | Saved life, charm and necklace slots; Extra Life, Fairy Charm modes and Magatama bullet cancellation | Native compilation; persistent stack components retained |
 | Trading | Antiquarian job site, original prices/XP/shot ranges, five trade levels, wandering-trader additions | Offer progression checked; interactive trading remains |
 | Loot / progression | Original loot additions, modern Looting functions, enchantments, custom advancement triggers and cancellation statistics | Content loads; detailed progression checks remain |
-| Configuration | Original defaults, editable JSON and Mods-menu settings | Native compilation; original options present in the menu editor |
+| Configuration | Original defaults, editable JSON and Mods-menu settings | Mods-menu page opened in-game; changed numeric option persisted with its integer type |
 
 ## Deliberate Horizon adaptations
 
@@ -29,3 +29,5 @@ Target: the complete Arcadian Dream 0.1.0 content and gameplay roster on Horizon
 Player state lives in the world’s `arcadiandream/players.json`. Fairy variants and spells are entity attachments; shot parameters are saved on projectiles and synchronized to clients. Settings live in the game home’s `config/arcadiandream.json` and require a restart after editing. Server settings are authoritative.
 
 Both client and dedicated server need matching content and native packages. This port does not distribute Minecraft resources, Java libraries or a Minecraft JAR. Testing uses isolated worlds; existing worlds are never regenerated.
+
+The installed client was also rebuilt with Arcadian Dream, ChatHeads, Eating Animation, Lunatic, Minimap, Tectonic-Horizon and Zoom, then opened in an isolated world with BOP content enabled. Saved fairies loaded and an item-give command displayed the translated item name. No existing player world or account was used for this check.
