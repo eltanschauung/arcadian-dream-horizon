@@ -1,0 +1,1 @@
+fn hook(game:&mut crate::game::Game<'_>,amount:f32,damage_type:&str)->core::ops::ControlFlow<bool>{match game.arcadian_hurt(amount,damage_type){Some(v)=>core::ops::ControlFlow::Break(v),None=>core::ops::ControlFlow::Continue(())}}

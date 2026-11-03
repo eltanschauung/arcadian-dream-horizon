@@ -1,0 +1,1 @@
+fn hook(p:&mut Projectile,w:&impl ProjectileWorld,impact:bool)->core::ops::ControlFlow<(bool,Hit)>{match crate::projectiles::arcadian_motion::tick(p,w,impact){Some(v)=>core::ops::ControlFlow::Break(v),None=>core::ops::ControlFlow::Continue(())}}

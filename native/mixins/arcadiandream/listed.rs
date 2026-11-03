@@ -1,0 +1,1 @@
+fn listed(mods: &mut Vec<NativeMod>) { mods.push(NativeMod { id:"arcadiandream".into(), title:"Arcadian Dream 0.1.0".into(), description:"Unofficial native port of Maxmani and contributors’ Arcadian Dream. Code EUPL-1.2-or-later; assets CC-BY-SA-4.0.".into(), keys:Vec::new() }); }

@@ -1,0 +1,8 @@
+id = "arcadiandream"
+name = "Arcadian Dream"
+version = "0.1.0"
+description = "Unofficial Rust-native Horizon port of Arcadian Dream by Maxmani and contributors."
+authors = ["Maxmani and contributors (original)", "eltanschauung (Horizon port)"]
+api = "0.2"
+side = "both"
+capabilities = ["registries"]

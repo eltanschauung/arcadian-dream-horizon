@@ -1,0 +1,1 @@
+fn hook(game: &mut crate::game::Game<'_>, pos: [i32;3], facing: Direction, stack: &ItemStack, answer: &mut Option<NativeDispensed>) { if let Some(v)=game.arcadian_dispense(pos,facing,stack){*answer=Some(v);} }

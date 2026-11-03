@@ -1,0 +1,1 @@
+fn hook(p:&Projectile)->core::ops::ControlFlow<Option<crate::items::ItemStack>>{match crate::projectiles::arcadian_motion::drawn(p){Some(v)=>core::ops::ControlFlow::Break(Some(v)),None=>core::ops::ControlFlow::Continue(())}}

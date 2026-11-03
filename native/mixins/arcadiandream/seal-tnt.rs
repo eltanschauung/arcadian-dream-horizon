@@ -1,0 +1,1 @@
+fn hook(game:&mut crate::game::Game<'_>,pos:BlockPos,short:bool)->core::ops::ControlFlow<()>{if !short&&game.arcadian_sealed([pos.x,pos.y,pos.z]){game.arcadian_queue(format!("execute in {} run setblock {} {} {} minecraft:tnt",game.dim.id(),pos.x,pos.y,pos.z));core::ops::ControlFlow::Break(())}else{core::ops::ControlFlow::Continue(())}}

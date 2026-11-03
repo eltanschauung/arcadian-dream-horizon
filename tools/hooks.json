@@ -1,0 +1,1129 @@
+[
+  {
+    "ident": "machine-click",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_right_click_block",
+    "helper": "machine-click.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "pos",
+        "[i32; 3]",
+        "pos"
+      ],
+      [
+        "canceled",
+        "&mut bool",
+        "&mut *canceled"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "machine-types",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_block_entity",
+    "helper": "machine-types.rs",
+    "params": [
+      [
+        "block",
+        "&str",
+        "block"
+      ],
+      [
+        "entity",
+        "&mut Option<(String,Compound)>",
+        "&mut *entity"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "machine-tickers",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_block_entity_ticks",
+    "helper": "machine-tickers.rs",
+    "params": [
+      [
+        "block",
+        "&str",
+        "block"
+      ],
+      [
+        "ticks",
+        "&mut bool",
+        "&mut *ticks"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "machine-container",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_block_entity_container",
+    "helper": "machine-container.rs",
+    "params": [
+      [
+        "block",
+        "&str",
+        "block"
+      ],
+      [
+        "container",
+        "&mut Option<ModContainer>",
+        "&mut *container"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "machine-screen",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_screen",
+    "helper": "machine-screen.rs",
+    "params": [
+      [
+        "block",
+        "&str",
+        "block"
+      ],
+      [
+        "screen",
+        "&mut Option<NativeScreen>",
+        "&mut *screen"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "machine-tick",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_block_entity_tick",
+    "helper": "machine-tick.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "pos",
+        "[i32; 3]",
+        "pos"
+      ],
+      [
+        "entity",
+        "&mut ModBlockEntity",
+        "&mut *entity"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "fairy-render",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_mob_submit",
+    "helper": "fairy-render.rs",
+    "params": [
+      [
+        "game",
+        "&crate::game::Game<'_>",
+        "&*self"
+      ],
+      [
+        "mob",
+        "&NativeMobRender<'_>",
+        "mob"
+      ],
+      [
+        "draw",
+        "&mut BlockEntityDraw",
+        "&mut *draw"
+      ],
+      [
+        "drawn",
+        "&mut bool",
+        "&mut *drawn"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "bullet-motion",
+    "target": "horizon_client_lib::projectiles::Projectile::tick_inner",
+    "helper": "bullet-motion.rs",
+    "params": [
+      [
+        "p",
+        "&mut Projectile",
+        "&mut *self"
+      ],
+      [
+        "w",
+        "&impl ProjectileWorld",
+        "w"
+      ],
+      [
+        "impact",
+        "bool",
+        "impact"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": true
+  },
+  {
+    "ident": "hourai-damage",
+    "target": "horizon_client::game::creatures::Game<'_>::hurt_player_from",
+    "helper": "hourai-damage.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "amount",
+        "f32",
+        "amount"
+      ],
+      [
+        "damage_type",
+        "&str",
+        "damage_type"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": true
+  },
+  {
+    "ident": "item-finish",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_living_entity_use_item_finish",
+    "helper": "item-finish.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "stack",
+        "&ItemStack",
+        "stack"
+      ],
+      [
+        "result",
+        "&mut Option<ItemStack>",
+        "&mut *result"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "ethereal-block",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_left_click_block",
+    "helper": "ethereal-block.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "canceled",
+        "&mut bool",
+        "&mut *canceled"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "ethereal-attack",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_attack_entity",
+    "helper": "ethereal-attack.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "canceled",
+        "&mut bool",
+        "&mut *canceled"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "entity-metadata",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_net_from_server",
+    "helper": "entity-metadata.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "channel",
+        "&str",
+        "channel"
+      ],
+      [
+        "data",
+        "&[u8]",
+        "data"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "bullet-item",
+    "target": "horizon_client_lib::projectiles::Projectile::drawn_item",
+    "helper": "bullet-item.rs",
+    "params": [
+      [
+        "p",
+        "&Projectile",
+        "&*self"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": true
+  },
+  {
+    "ident": "save-shot",
+    "target": "horizon_client_lib::entity_nbt::throwable_to_nbt",
+    "helper": "save-shot.rs",
+    "params": [
+      [
+        "p",
+        "&Projectile",
+        "p"
+      ],
+      [
+        "uuid",
+        "[i32; 4]",
+        "uuid"
+      ],
+      [
+        "owner",
+        "Option<[i32; 4]>",
+        "owner"
+      ],
+      [
+        "raw",
+        "Option<&Tag>",
+        "raw"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": true
+  },
+  {
+    "ident": "load-shot",
+    "target": "horizon_client_lib::entity_nbt::throwable_from_nbt",
+    "helper": "load-shot.rs",
+    "params": [
+      [
+        "tag",
+        "&Tag",
+        "tag"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "arcadian-settings",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_settings",
+    "helper": "arcadian-settings.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "mod_id",
+        "&str",
+        "mod_id"
+      ],
+      [
+        "buttons",
+        "&mut Vec<String>",
+        "&mut *buttons"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "arcadian-settings-click",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_settings_click",
+    "helper": "arcadian-settings-click.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "mod_id",
+        "&str",
+        "mod_id"
+      ],
+      [
+        "button",
+        "usize",
+        "button"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "death-protection-ready",
+    "target": "horizon_client::game::totem::Game<'_>::update_totem_ready",
+    "helper": "death-protection-ready.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": true
+  },
+  {
+    "ident": "death-protection-apply",
+    "target": "horizon_client::game::totem::Game<'_>::apply_totem",
+    "helper": "death-protection-apply.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": true
+  },
+  {
+    "ident": "accessory-commands",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_register_commands",
+    "helper": "accessory-commands.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "commands",
+        "&mut Vec<NativeCommand>",
+        "&mut *commands"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "accessory-command",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_perform_command",
+    "helper": "accessory-command.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "player",
+        "&NativeServerPlayer",
+        "player"
+      ],
+      [
+        "command",
+        "&str",
+        "command"
+      ],
+      [
+        "ran",
+        "&mut bool",
+        "&mut *ran"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "scythe-duration",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_use_duration",
+    "helper": "scythe-duration.rs",
+    "params": [
+      [
+        "stack",
+        "&ItemStack",
+        "stack"
+      ],
+      [
+        "duration",
+        "&mut i32",
+        "&mut *duration"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "scythe-animation",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_use_animation",
+    "helper": "scythe-animation.rs",
+    "params": [
+      [
+        "stack",
+        "&ItemStack",
+        "stack"
+      ],
+      [
+        "animation",
+        "&mut UseAnimation",
+        "&mut *animation"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "scythe-release",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_release_using",
+    "helper": "scythe-release.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "stack",
+        "&ItemStack",
+        "stack"
+      ],
+      [
+        "time_left",
+        "i32",
+        "time_left"
+      ],
+      [
+        "used",
+        "&mut bool",
+        "&mut *used"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "danmaku-impact",
+    "target": "horizon_client::game::creatures::Game<'_>::projectile_hit",
+    "helper": "danmaku-impact.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "p",
+        "&Projectile",
+        "p"
+      ],
+      [
+        "hit",
+        "Hit",
+        "hit"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": true
+  },
+  {
+    "ident": "arcadian-drops",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_loot_drops",
+    "helper": "arcadian-drops.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "context",
+        "&NativeLootDrops<'_>",
+        "context"
+      ],
+      [
+        "drops",
+        "&mut Vec<ItemStack>",
+        "&mut *drops"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "table-slot-rules",
+    "target": "horizon_client_lib::menu::native_menu_slot_rules",
+    "helper": "table-slot-rules.rs",
+    "params": [
+      [
+        "menu",
+        "&str",
+        "menu"
+      ],
+      [
+        "slot",
+        "usize",
+        "slot"
+      ],
+      [
+        "stack",
+        "&ItemStack",
+        "stack"
+      ],
+      [
+        "may_place",
+        "&mut bool",
+        "&mut *may_place"
+      ],
+      [
+        "max_stack",
+        "&mut u32",
+        "&mut *max_stack"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "arcadian-loot-root",
+    "target": "horizon_world::loot::shared_tables",
+    "helper": "arcadian-loot-root.rs",
+    "params": [
+      [
+        "root",
+        "&std::path::Path",
+        "root"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "arcadian-loot-tables",
+    "target": "horizon_world::loot::native_loot_table_load",
+    "helper": "arcadian-loot-tables.rs",
+    "params": [
+      [
+        "id",
+        "&str",
+        "id"
+      ],
+      [
+        "table",
+        "&mut serde_json::Value",
+        "&mut *table"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "arcadian-save-stop",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_server_stopping",
+    "helper": "arcadian-save-stop.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "arcadian-save-logout",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_player_logged_out",
+    "helper": "arcadian-save-logout.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "bullet-pickable",
+    "target": "horizon_client::game::deflect::attackable",
+    "helper": "bullet-pickable.rs",
+    "params": [
+      [
+        "p",
+        "&Projectile",
+        "p"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": true
+  },
+  {
+    "ident": "necklace-pick",
+    "target": "horizon_client::game::deflect::Game<'_>::redirectable_hit",
+    "helper": "necklace-pick.rs",
+    "params": [
+      [
+        "game",
+        "&crate::game::Game<'_>",
+        "&*self"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": true
+  },
+  {
+    "ident": "necklace-punch",
+    "target": "horizon_client::game::deflect::Game<'_>::deflect",
+    "helper": "necklace-punch.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "i",
+        "usize",
+        "i"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": true
+  },
+  {
+    "ident": "antiquarian-workstation",
+    "target": "horizon_client_lib::mobs::villager::job_site_profession",
+    "helper": "antiquarian-workstation.rs",
+    "params": [
+      [
+        "block",
+        "&str",
+        "block"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": true
+  },
+  {
+    "ident": "antiquarian-offers",
+    "target": "horizon_client::game::trading::Game<'_>::ensure_offers",
+    "helper": "antiquarian-offers.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "index",
+        "usize",
+        "index"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": true
+  },
+  {
+    "ident": "antiquarian-level",
+    "target": "horizon_client_lib::merchant::Session::notify_trade",
+    "helper": "antiquarian-level.rs",
+    "params": [
+      [
+        "session",
+        "&mut Session",
+        "&mut *self"
+      ],
+      [
+        "index",
+        "usize",
+        "index"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "hourai-effect-immunity",
+    "target": "horizon_client::game::potions::Game<'_>::add_player_effect",
+    "helper": "hourai-effect-immunity.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "effect",
+        "&EffectInstance",
+        "&effect"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": true
+  },
+  {
+    "ident": "nue-impaling",
+    "target": "horizon_items::enchant::Enchantments::can_enchant",
+    "helper": "nue-impaling.rs",
+    "params": [
+      [
+        "id",
+        "&str",
+        "id"
+      ],
+      [
+        "item",
+        "&str",
+        "item"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": true
+  },
+  {
+    "ident": "arcadian-dispensers",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_dispense_item",
+    "helper": "arcadian-dispensers.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "pos",
+        "[i32;3]",
+        "pos"
+      ],
+      [
+        "facing",
+        "Direction",
+        "facing"
+      ],
+      [
+        "stack",
+        "&ItemStack",
+        "stack"
+      ],
+      [
+        "answer",
+        "&mut Option<NativeDispensed>",
+        "&mut *answer"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "arcadian-tooltips",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_tooltip",
+    "helper": "arcadian-tooltips.rs",
+    "params": [
+      [
+        "game",
+        "&crate::game::Game<'_>",
+        "&*self"
+      ],
+      [
+        "stack",
+        "&ItemStack",
+        "stack"
+      ],
+      [
+        "lines",
+        "&mut Vec<(Text,u32)>",
+        "&mut *lines"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "seal-tnt",
+    "target": "horizon_client::game::tnt::Game<'_>::spawn_primed_tnt",
+    "helper": "seal-tnt.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "pos",
+        "BlockPos",
+        "pos"
+      ],
+      [
+        "short",
+        "bool",
+        "short"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": true
+  },
+  {
+    "ident": "hisou-shield",
+    "target": "horizon_world::item_defaults::native_modify_default_components",
+    "helper": "hisou-shield.rs",
+    "params": [
+      [
+        "item",
+        "&str",
+        "item"
+      ],
+      [
+        "components",
+        "&mut serde_json::Map<String,serde_json::Value>",
+        "&mut *components"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "arcadian-player-layer-listener",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_player_render_listened",
+    "helper": "arcadian-player-layer-listener.rs",
+    "params": [
+      [
+        "listened",
+        "&mut bool",
+        "&mut *listened"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "ordinary-hat-layer",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_mob_layer",
+    "helper": "ordinary-hat-layer.rs",
+    "params": [
+      [
+        "game",
+        "&crate::game::Game<'_>",
+        "&*self"
+      ],
+      [
+        "mob",
+        "&NativeMobRender<'_>",
+        "mob"
+      ],
+      [
+        "who",
+        "Option<&NativePlayerRender<'_>>",
+        "who"
+      ],
+      [
+        "draw",
+        "&mut BlockEntityDraw",
+        "&mut *draw"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "arcadian-reconnect",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_player_logged_in",
+    "helper": "arcadian-reconnect.rs",
+    "params": [
+      [
+        "game",
+        "&mut crate::game::Game<'_>",
+        "&mut *self"
+      ],
+      [
+        "player",
+        "u128",
+        "player"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "pedestal-update",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_block_entity_update_tag",
+    "helper": "pedestal-update.rs",
+    "params": [
+      [
+        "entity",
+        "&ModBlockEntity",
+        "entity"
+      ],
+      [
+        "tag",
+        "&mut Option<Compound>",
+        "&mut *tag"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "pedestal-draw",
+    "target": "horizon_client::game::native_hooks::Game<'_>::native_block_entity_submit",
+    "helper": "pedestal-draw.rs",
+    "params": [
+      [
+        "game",
+        "&crate::game::Game<'_>",
+        "&*self"
+      ],
+      [
+        "entity",
+        "&ModBlockEntity",
+        "entity"
+      ],
+      [
+        "draw",
+        "&mut BlockEntityDraw",
+        "&mut *draw"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "mob-type-registration",
+    "target": "horizon_client::game::mods::register_entity_types",
+    "helper": "mob-type-registration.rs",
+    "params": [
+      [
+        "mods",
+        "&[horizon_client::mod_content::ContentMod]",
+        "mods"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": true
+  },
+  {
+    "ident": "seal-survival",
+    "target": "horizon_client::game::native_hooks::GameLevel<'_>::native_can_survive",
+    "helper": "seal-survival.rs",
+    "params": [
+      [
+        "level",
+        "&crate::game::GameLevel<'_>",
+        "&*self"
+      ],
+      [
+        "pos",
+        "BlockPos",
+        "pos"
+      ],
+      [
+        "state",
+        "BlockStateId",
+        "state"
+      ],
+      [
+        "survives",
+        "&mut Option<bool>",
+        "&mut *survives"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "seal-place-state",
+    "target": "horizon_client::game::native_hooks::GameLevel<'_>::native_state_for_placement",
+    "helper": "seal-place-state.rs",
+    "params": [
+      [
+        "level",
+        "&crate::game::GameLevel<'_>",
+        "&*self"
+      ],
+      [
+        "state",
+        "BlockStateId",
+        "state"
+      ],
+      [
+        "context",
+        "&PlacementContext",
+        "context"
+      ],
+      [
+        "fluid",
+        "FluidState",
+        "fluid"
+      ],
+      [
+        "answer",
+        "&mut Option<Option<BlockStateId>>",
+        "&mut *answer"
+      ]
+    ],
+    "kind": "HEAD",
+    "cancel": false
+  },
+  {
+    "ident": "fairy-flight",
+    "target": "horizon_client_lib::mobs::Mob::tick",
+    "helper": "fairy-flight.rs",
+    "params": [
+      [
+        "value",
+        "bool",
+        "$value"
+      ],
+      [
+        "m",
+        "&mut Mob",
+        "&mut *self"
+      ],
+      [
+        "w",
+        "&MobWorld",
+        "w"
+      ],
+      [
+        "events",
+        "&mut Vec<MobEvent>",
+        "&mut *events"
+      ]
+    ],
+    "kind": "RETURN",
+    "cancel": false
+  }
+]

@@ -1,0 +1,1 @@
+fn hook(game:&mut crate::game::Game<'_>,effect:&EffectInstance)->core::ops::ControlFlow<bool>{if game.arcadian_effect_immune(effect.id){core::ops::ControlFlow::Break(false)}else{core::ops::ControlFlow::Continue(())}}

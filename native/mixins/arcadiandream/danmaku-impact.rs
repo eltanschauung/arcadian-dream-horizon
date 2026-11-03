@@ -1,0 +1,1 @@
+fn hook(game:&mut crate::game::Game<'_>,p:&Projectile,hit:Hit)->core::ops::ControlFlow<Result<()>>{if game.arcadian_projectile_hit(p,hit){core::ops::ControlFlow::Break(Ok(()))}else{core::ops::ControlFlow::Continue(())}}

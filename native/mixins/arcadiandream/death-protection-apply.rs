@@ -1,0 +1,1 @@
+fn hook(game:&mut crate::game::Game<'_>)->core::ops::ControlFlow<Option<Body>>{if let Some((at,width,height))=game.arcadian_resurrect(){core::ops::ControlFlow::Break(Some(Body{at,width,height}))}else{core::ops::ControlFlow::Continue(())}}
