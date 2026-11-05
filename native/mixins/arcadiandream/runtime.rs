@@ -224,6 +224,15 @@ impl Game<'_> {
                     && self.native_block([p[0], p[1] + 1, p[2]]) == "minecraft:air"
                 {
                     self.arcadian_tp([p[0] as f64 + 0.5, p[1] as f64, p[2] as f64 + 0.5]);
+                    // Resolve @s after the queued teleport, in the player's destination level.
+                    // Use normal server sound/particle dispatch so nearby clients see one burst.
+                    let id = uuid(self.native_acting_id());
+                    self.arcadian_queue(format!(
+                        "execute as {id} at @s run playsound minecraft:entity.item_frame.remove_item player @a[distance=..16] ~ ~1 ~ 1 1"
+                    ));
+                    self.arcadian_queue(format!(
+                        "execute as {id} at @s run particle minecraft:white_smoke ~ ~1 ~ 0.3 0.5 0.3 0.03 20 normal"
+                    ));
                     self.damage_held(1);
                     break;
                 }
