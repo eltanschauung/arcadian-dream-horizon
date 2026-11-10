@@ -38,6 +38,7 @@ impl Game<'_> {
         let source = Damage {
             kind: DamageKind::Thrown,
             attacker: p.owner,
+            attacker_species: None,
             from: Some([p.previous.x, p.previous.y, p.previous.z]),
         };
         let icy = data["icy"].as_bool().unwrap_or(false);
