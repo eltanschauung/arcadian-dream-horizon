@@ -189,6 +189,15 @@ impl Game<'_> {
             .as_f64()
             .unwrap_or(64.0) as f32;
 
+        // The Allay template supplies full block light before native rendering.
+        // Fairies use ordinary world lighting, except while actually burning.
+        let inherited_light = draw.light;
+        if let Some(mob) = self.mobs.iter().find(|mob| mob.id == m.id) {
+            let probe = mob.light_probe(f64::from(m.partial));
+            let light = self.world.light(probe[0], probe[1], probe[2]);
+            let block = if mob.fire_ticks > 0 { 15 } else { light & 15 };
+            draw.light = u32::from(light >> 4) * 16 | (u32::from(block) * 16) << 8;
+        }
         draw.push();
         draw.rotate_about([0.0, 1.0, 0.0], 180.0, [0.0; 3]);
         if m.death_time > 0 {
@@ -212,6 +221,7 @@ impl Game<'_> {
             }
         }
         draw.pop();
+        draw.light = inherited_light;
         true
     }
 }

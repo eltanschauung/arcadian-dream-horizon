@@ -32,6 +32,10 @@ Both client and dedicated server need matching content and native packages. This
 
 The installed client was also rebuilt with Arcadian Dream, ChatHeads, Eating Animation, Lunatic, Minimap, Tectonic-Horizon and Zoom, then opened in an isolated world with BOP content enabled. Saved fairies loaded and an item-give command displayed the translated item name. No existing player world or account was used for this check.
 
+## Fairy lighting correction
+
+Fairy models sample sky and block light at the interpolated eye position rather than inheriting the Allay template's maximum block light. Burning fairies retain maximum block light; bodies and wings otherwise follow the environment. Native preflight/build validation is recorded separately from an in-game visual check.
+
 ## Fairy animation correction
 
 The native renderer now applies GeckoLib's baked coordinate/rotation conventions to bones, cube pivots and cube rotations, and scales about each bone pivot. The original model files remain unchanged. The three original clips (`idle`, `idle.ground`, `move`) use all their authored easing curves, including parameterized elastic easing; per-entity clocks restart on clip changes and blend for five ticks. Movement uses Java's 0.015 horizontal-motion threshold plus nonzero limb speed; hurt fairies select ground/air idle. Head look overrides match the Java models. Death roll and death tint are handled by the native renderer.
