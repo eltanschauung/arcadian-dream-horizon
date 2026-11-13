@@ -52,7 +52,7 @@
           "name": "arcadiandream:bomb_item"
         }
       ],
-      "conditions": [
+      "type": [
         {
           "type": "minecraft:random_chance",
           "chance": 0.1
@@ -68,7 +68,7 @@
           "name": "arcadiandream:extend_item"
         }
       ],
-      "conditions": [
+      "type": [
         {
           "type": "minecraft:random_chance",
           "chance": 0.1
@@ -84,7 +84,7 @@
           "name": "arcadiandream:star_item"
         }
       ],
-      "conditions": [
+      "type": [
         {
           "type": "minecraft:random_chance",
           "chance": 0.15
@@ -100,7 +100,7 @@
           "name": "arcadiandream:music_disc_fairy_playground"
         }
       ],
-      "conditions": [
+      "type": [
         {
           "type": "minecraft:random_chance",
           "chance": 0.01
@@ -109,18 +109,6 @@
     },
     {
       "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "enchantment": "minecraft:looting",
-          "unenchanted_chance": 0.7,
-          "enchanted_chance": {
-            "type": "minecraft:linear",
-            "base": 0.7999999999999999,
-            "per_level_above_first": 0.1
-          },
-          "type": "minecraft:random_chance_with_enchanted_bonus"
-        }
-      ],
       "entries": [
         {
           "type": "minecraft:item",
@@ -203,7 +191,19 @@
           "weight": 2
         }
       ],
-      "rolls": 1.0
+      "rolls": 1.0,
+      "type": [
+        {
+          "enchantment": "minecraft:looting",
+          "unenchanted_chance": 0.7,
+          "enchanted_chance": {
+            "type": "minecraft:linear",
+            "base": 0.7999999999999999,
+            "per_level_above_first": 0.1
+          },
+          "type": "minecraft:random_chance_with_enchanted_bonus"
+        }
+      ]
     }
   ],
   "random_sequence": "arcadiandream:entities/ice_fairy"

@@ -52,7 +52,7 @@
           "name": "arcadiandream:bomb_item"
         }
       ],
-      "conditions": [
+      "type": [
         {
           "type": "minecraft:random_chance",
           "chance": 0.1
@@ -68,7 +68,7 @@
           "name": "arcadiandream:extend_item"
         }
       ],
-      "conditions": [
+      "type": [
         {
           "type": "minecraft:random_chance",
           "chance": 0.1
@@ -84,7 +84,7 @@
           "name": "arcadiandream:star_item"
         }
       ],
-      "conditions": [
+      "type": [
         {
           "type": "minecraft:random_chance",
           "chance": 0.15
@@ -100,7 +100,7 @@
           "name": "arcadiandream:music_disc_fairy_playground"
         }
       ],
-      "conditions": [
+      "type": [
         {
           "type": "minecraft:random_chance",
           "chance": 0.01
