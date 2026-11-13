@@ -46,7 +46,7 @@ def main():
   if 'structure'in v and isinstance(v['structure'],str):v['structures']=v.pop('structure')
   if 'items'in v and isinstance(v['items'],list)and len(v['items'])==1 and isinstance(v['items'][0],str):v['items']=v['items'][0]
   if 'function'in v:v['type']=v.pop('function')
-  if 'condition'in v and'type'not in v:v['type']=v.pop('condition')
+  if isinstance(v.get('condition'),str)and'type'not in v:v['type']=v.pop('condition')
   if 'functions'in v:v['modifier']=v.pop('functions')
   return v
  for folder in ['loot_table','advancement']:
