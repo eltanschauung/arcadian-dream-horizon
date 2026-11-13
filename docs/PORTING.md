@@ -45,3 +45,13 @@ Reference: original `BaseFairyEntity.predicate/registerControllers`, fairy model
 ## Wall-Passing Chisel emergence
 
 Successful chisel passage queues Minecraft's item-frame item-removal pop and a 20-particle white-smoke puff after its teleport. Both resolve at the acting player's destination through the existing authoritative command queue and standard nearby sound/particle dispatch; disabled use, blocked passage and failed searches emit neither. No custom packets, assets or persistent state are introduced.
+
+## Fairy loot balance
+
+All three fairy types use two independent guaranteed pools: 1–4 Power Items
+and 1–4 Point Items per kill. Independent single-item bonus pools give Bomb
+Items and Extend Items a 10% chance each, Star Items 15%, and the Fairy
+Playground disc 1%. These six pools apply to all kill sources and have no
+Looting bonuses. Ice Fairy ice drops retain their original pool and Looting
+behavior. The default count of each bonus entry is one; there is no weighted
+selection between bonus items.

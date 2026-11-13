@@ -3,160 +3,109 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
           "name": "arcadiandream:power_item",
           "modifier": [
             {
-              "add": false,
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "max": 5.0,
-                "min": 0.0
+                "min": 1,
+                "max": 4
               },
-              "type": "minecraft:set_count"
-            },
-            {
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 1.0,
-                "min": 0.0
-              },
-              "enchantment": "minecraft:looting",
-              "type": "minecraft:enchanted_count_increase"
+              "add": false
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "bonus_rolls": 0.0,
+      "rolls": 1,
+      "entries": [
         {
           "type": "minecraft:item",
           "name": "arcadiandream:point_item",
           "modifier": [
             {
-              "add": false,
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "max": 5.0,
-                "min": 0.0
+                "min": 1,
+                "max": 4
               },
-              "type": "minecraft:set_count"
-            },
-            {
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 1.0,
-                "min": 0.0
-              },
-              "enchantment": "minecraft:looting",
-              "type": "minecraft:enchanted_count_increase"
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "arcadiandream:star_item",
-          "modifier": [
-            {
-              "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 5.0,
-                "min": 0.0
-              },
-              "type": "minecraft:set_count"
-            },
-            {
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 1.0,
-                "min": 0.0
-              },
-              "enchantment": "minecraft:looting",
-              "type": "minecraft:enchanted_count_increase"
+              "add": false
             }
           ]
         }
-      ],
-      "rolls": {
-        "type": "minecraft:uniform",
-        "max": 4.0,
-        "min": 1.0
-      }
+      ]
     },
     {
       "bonus_rolls": 0.0,
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "type": "minecraft:killed_by_player"
-            },
-            {
-              "enchantment": "minecraft:looting",
-              "unenchanted_chance": 0.002,
-              "enchanted_chance": {
-                "type": "minecraft:linear",
-                "base": 0.004,
-                "per_level_above_first": 0.002
-              },
-              "type": "minecraft:random_chance_with_enchanted_bonus"
-            }
-          ],
-          "name": "arcadiandream:music_disc_fairy_playground"
-        }
-      ],
-      "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "conditions": [
-            {
-              "type": "minecraft:killed_by_player"
-            },
-            {
-              "enchantment": "minecraft:looting",
-              "unenchanted_chance": 0.02,
-              "enchanted_chance": {
-                "type": "minecraft:linear",
-                "base": 0.027,
-                "per_level_above_first": 0.007
-              },
-              "type": "minecraft:random_chance_with_enchanted_bonus"
-            }
-          ],
           "name": "arcadiandream:bomb_item"
         }
       ],
-      "rolls": 1.0
+      "conditions": [
+        {
+          "type": "minecraft:random_chance",
+          "chance": 0.1
+        }
+      ]
     },
     {
       "bonus_rolls": 0.0,
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "type": "minecraft:killed_by_player"
-            },
-            {
-              "enchantment": "minecraft:looting",
-              "unenchanted_chance": 0.006,
-              "enchanted_chance": {
-                "type": "minecraft:linear",
-                "base": 0.012,
-                "per_level_above_first": 0.006
-              },
-              "type": "minecraft:random_chance_with_enchanted_bonus"
-            }
-          ],
           "name": "arcadiandream:extend_item"
         }
       ],
-      "rolls": 1.0
+      "conditions": [
+        {
+          "type": "minecraft:random_chance",
+          "chance": 0.1
+        }
+      ]
+    },
+    {
+      "bonus_rolls": 0.0,
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "arcadiandream:star_item"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "minecraft:random_chance",
+          "chance": 0.15
+        }
+      ]
+    },
+    {
+      "bonus_rolls": 0.0,
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "arcadiandream:music_disc_fairy_playground"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "minecraft:random_chance",
+          "chance": 0.01
+        }
+      ]
     },
     {
       "bonus_rolls": 0.0,
